@@ -169,6 +169,7 @@ class TestHTTPClient(unittest.TestCase):
         http = httpclass.HTTPClient()
         req = http.POST("http://%s:%d/49872398432" % (BASEHOST,BASEPORT) )
         self.assertTrue(req != None, "None Returned!")
+        print(req.code)
         self.assertTrue(req.code == 404)
 
     def testGET(self):
@@ -180,8 +181,8 @@ class TestHTTPClient(unittest.TestCase):
         req = http.GET( url )
         self.assertTrue(req != None, "None Returned!")
         self.assertTrue(req.code == 200)
+        print(req.body.find(path))
         self.assertTrue(req.body.find(path)>=0, "Data: [%s] " % req.body)
-
     def testGETHeaders(self):
         '''Test HTTP GET Headers'''
         MyHTTPHandler.get = header_check
